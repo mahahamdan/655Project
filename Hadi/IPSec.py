@@ -13,7 +13,7 @@ def detectProtocol(packet):
         expectedHeaderLength = ihl * 4  #IHL is in 4-byte units
         if len(ipHeader) < expectedHeaderLength:
             return f"Invalid Packet: IP Header Length Mismatch (Expected: {expectedHeaderLength}, Actual: {len(ipHeader)})" #checks if the actual length of the IP header is less than the expected length; 
-                                                                                                                        #if it is, it returns an "Invalid Packet: IP Header Length Mismatch" message.
+                                                                                                                            #if it is, it returns an "Invalid Packet: IP Header Length Mismatch" message.
         protocol = ipHeader.proto #extracts protocol number from the header
 
         #checing for IPSec
@@ -31,9 +31,12 @@ def detectProtocol(packet):
         return f"Error during protocol detection: {str(e)}"
         
 def packetHandler(packet):
-    result = detectProtocol(packet)
-    print(f"Captured Packet: {result}")
-
+    try:   
+        result = detectProtocol(packet)
+        print(f"Captured Packet: {result}")
+    except Exception as e:
+        print(f"Error processing packet: {e}") #handle errors gracefully
+        
 #sniffing packets from the network
 def sniffPackets():
     sniff(prn=packetHandler)
