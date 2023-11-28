@@ -1,22 +1,24 @@
 from scapy.all import IP, UDP, Ether, ESP, AH, send
 import time
-
-# Function to send IPSec packet
-def send_ipsec_packet(packet):
+#-------------------------------------------------------------------------------------------by Hadi
+#this code is for testing IPSec code
+conf.iface = "Realtek RTL8822BE 802.11ac PCIe Adapter" #default interface
+#function to send IPSec packet
+def sendIPSecPacket(packet):
     send(packet, verbose=0)
 
 while True:
 
-# Fabricate and send ESP packet
-    esp_packet = IP(src="192.168.1.1", dst="192.168.1.2") / ESP()
-    send_ipsec_packet(esp_packet)
+    #fabricating and sending ESP packet 
+    espPacket = IP() / ESP()
+    sendIPsecPacket(espPacket)
 
-# Fabricate and send AH packet
-    ah_packet =  IP(src="192.168.1.1", dst="192.168.1.2") / AH()
-    send_ipsec_packet(ah_packet)
+    #fabricating and sending AH packet
+    ahPacket =  IP() / AH()
+    sendIPsecPacket(ahPacket)
 
-# Fabricate and send packet with invalid IHL
-    invalid_ihl_packet =  IP(src="192.168.1.1", dst="192.168.1.2", ihl=6) / UDP()
-    send_ipsec_packet(invalid_ihl_packet)
+    #fabricating and sending packet with invalid IHL
+    invalidIHLPacket =  IP(ihl=6) / UDP() #can be UDP or TCP
+    sendIPSecPacket(invalidIHLPacket)
 
-    time.sleep(1)
+    time.sleep(1) #time before sending more packets
