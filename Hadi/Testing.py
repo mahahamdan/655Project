@@ -2,7 +2,7 @@ from scapy.all import IP, UDP, Ether, ESP, AH, send, conf
 import time
 #-------------------------------------------------------------------------------------------by Hadi
 #this code is for testing IPSec code
-conf.iface = "Realtek RTL8822BE 802.11ac PCIe Adapter" #default interface in case I remove src and dst
+#conf.iface = "Realtek RTL8822BE 802.11ac PCIe Adapter" #my default interface in case I remove src and dst
 #function to send IPSec packet
 def sendIPSecPacket(packet):
     send(packet, verbose=0)
