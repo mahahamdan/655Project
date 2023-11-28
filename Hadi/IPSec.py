@@ -1,5 +1,5 @@
 from scapy.all import IP, ESP, AH, sniff
-from Testing import send_ipsec_packet
+from Testing import sendIPSecPacket
 import threading
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------by Hadi
 #IPSec
@@ -36,7 +36,7 @@ def packetHandler(packet):
 
 #sniffing packets from the network
 def sniffPackets():
-    sniff(prn=packet_handler)
+    sniff(prn=packetHandler)
 
 #starting sniffing in a separate thread
 sniffThread = threading.Thread(target=sniffPackets)
