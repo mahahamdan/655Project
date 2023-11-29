@@ -1,5 +1,6 @@
 from scapy.all import IP, ESP, AH, sniff
-from Testing import sendIPSecPacket
+#from Testing import fabricate_esp_packet
+#from Testing import fabricate_ah_packet
 import threading
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------by Hadi
 #IPSec
@@ -31,12 +32,12 @@ def detectProtocol(packet):
         return f"Error during protocol detection: {str(e)}"
         
 def packetHandler(packet):
-    try:   
+    try:
         result = detectProtocol(packet)
-        print(f"Captured Packet: {result}")
+        print(f"Captured Packet: {result}")#printing the results from the return statements
     except Exception as e:
-        print(f"Error processing packet: {e}") #handle errors gracefully
-        
+        print(f"Error processing packet: {e}")
+
 #sniffing packets from the network
 def sniffPackets():
     sniff(prn=packetHandler)
