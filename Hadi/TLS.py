@@ -43,7 +43,8 @@ def checkSSLTLS(url): #takes a URL as input and checks various SSL/TLS features.
             cookies = responseHTTPS.headers['Set-Cookie'].split(';')
             for cookie in cookies:
                 if 'Secure' in cookie:
-                    print("Secure flag found in cookies.")
+                    print("Secure flag found in cookies.")  #prevents the attacker from easily capturing sensitive session cookies because 
+                                                            #the browser will not send them over an unsecured HTTP connection
                     break
             else:
                 print("Warning: Some cookies do not have the 'Secure' flag.")#checks for Set-Cookie in the header
